@@ -193,19 +193,19 @@
                 } else if (Guziki[i].innerText == "=" && output.innerText != "" && tempmemory != "") {
                     console.log(dzialanie)
                     if (dzialanie == "+" || dzialanie=="-") {
-                        output.innerText = parseFloat(output.innerText) + parseFloat(tempmemory);
+                        output.innerText = parseFloat(tempmemory) + parseFloat(output.innerText);
                         dzialanie = "";
                     }
                     if (dzialanie == "*") {
-                        output.innerText = parseFloat(output.innerText) * parseFloat(tempmemory);
+                        output.innerText = parseFloat(tempmemory) * parseFloat(output.innerText);
                         dzialanie = "";
                     }
                     if (dzialanie == "/") {
-                        output.innerText = parseFloat(output.innerText) / parseFloat(tempmemory);
+                        output.innerText = parseFloat(tempmemory) / parseFloat(output.innerText);
                         dzialanie = "";
                     }
                     if (dzialanie == "^") {
-                        output.innerText = parseFloat(output.innerText) ** (parseFloat(tempmemory));
+                        output.innerText = parseFloat(tempmemory) ** parseFloat(output.innerText);
                         dzialanie = "";
                     }
                     typ.innerText = "";
