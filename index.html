@@ -1,4 +1,4 @@
-﻿<html>
+<html>
 <head>
     <meta charset="utf-8" />
 
@@ -62,21 +62,37 @@
             font-weight: bold;
             text-align: right;
             padding: 10px;
+            overflow:hidden;
         }
         #typ {
             position: absolute;
             font-size: 0.9em;
-            color:rgba(0,0,0,0.66);
+            color: rgba(0,0,0,0.66);
             font-weight: bold;
-            text-align: left;
-            margin-top:-9px;
+            text-align: right;
+            margin-top: -9px;
+            margin-right:10px;
+        }
+        #stara {
+            position: absolute;
+            top:15px;
+            width:550px;
+            font-size: 0.8em;
+            color: rgba(0,0,0,);
+            font-weight: bold;
+            text-align: right;
+            margin: 5px;
+        }
+        #wynik{
+            margin-top:50px;
+            margin-right:10px;
         }
     </style>
 </head>
 <body>
     <div id="Calculator">
         <div id="label">
-            <p id="typ"></p><p id="wynik"></p>
+            <p id="typ"></p><p id="stara">test</p><p id="wynik"></p>
         </div>
         <button class="boton-elegante">1</button>
         <button class="boton-elegante">2</button>
@@ -114,13 +130,15 @@
         Guziki = document.getElementsByTagName("button");
         output = document.getElementById("wynik")
         typ = document.getElementById("typ")
+        stara = document.getElementById("stara")
         for (let i = 0; i < Guziki.length; i++) {
             Guziki[i].onclick = () => {
 
                 if (Guziki[i].innerText == "C" && output.innerText != "") {
                     plus = false; minus = false; razy = false; dzielic = false; potega = false; pierw = false;
                     tempmemory = "";
-                    output.innerText = ""
+                    stara.innerText = "";
+                    output.innerText = "";
                     typ.innerText = "";
                 } else if (Guziki[i].innerText == "<" && output.innerText!="") {
                     if (output.innerText.charAt(output.innerText.length - 2) == ".") {
@@ -172,7 +190,7 @@
                     tempmemory = parseFloat(output.innerText);
                 } else if (Guziki[i].innerText == "." && output.innerText != "") {
                     kropka = true;
-                } else if (Guziki[i].innerText == "=" && output.innerText != "" && tempmemory!="") {
+                } else if (Guziki[i].innerText == "=" && output.innerText != "" && tempmemory != "") {
                     console.log(dzialanie)
                     if (dzialanie == "+" || dzialanie=="-") {
                         output.innerText = parseFloat(output.innerText) + parseFloat(tempmemory);
@@ -213,7 +231,10 @@
                             output.innerText = "";
                         }
                     }
-                    output.innerText += Guziki[i].innerText;
+                    if (output.innerText != "NaN") {
+                        output.innerText += Guziki[i].innerText;
+                        stara.innerText = tempmemory;
+                    }
                 }
             }
         }
